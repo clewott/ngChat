@@ -20,23 +20,3 @@ angular.module('chatApp')
       }
       )
   })
-  .factory('userSvc', function($resource) {
-    return $resource('api/collections/users',
-      {},
-      {
-        query: { method: 'GET', isArray: true},
-        create: { method: 'POST'}
-      }
-      )
-  })
-  .factory('userSvc2', function($resource) {
-    return $resource('api/collections/users/:id',
-      {
-        id: '@_id'
-      },
-      {
-        show: { method: 'GET'},
-        delete: { method: 'DELETE'},
-      }
-      )
-  });

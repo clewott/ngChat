@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('chatApp')
-  .controller('chatCtrl', function ($scope, $location,$routeParams, chatSvc, chatSvc2, userSvc, userSvc2) {
+  .controller('chatCtrl', function ($scope, $location, $routeParams, chatSvc, chatSvc2, userSvc, userSvc2) {
 
     $scope.createPost = function() {
       $location.path('/new');
@@ -25,6 +25,8 @@ angular.module('chatApp')
 // USER FUNCTIONS //
     $scope.newUser = function(user) {
       userSvc.create(user)
+      console.log(user);
+      console.log("TEST");
       $location.path('/chat');
     };
 
@@ -32,7 +34,7 @@ angular.module('chatApp')
 
 
 
-  })
+  });
   // .controller('PostCtrl', function($scope, $location, $routeParams, chatSvc2) {
   //
   //   $scope.post = chatSvc2.show({ id: $routeParams.id });

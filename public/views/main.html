@@ -8,10 +8,10 @@
 
 <div class="jumbotron">
   <h1>Welcome to ACChat!</h1>
-  <form ng-submit="newUser(user)">
+
     <label for="">ENTER USERNAME: </label>
-    <input type="text" ng-model="user.name">
-    <a href="#/chat"><button type="submit">CHAT</button></a>
-  </form>
+    <input type="text" data-ng-model="user.name">
+    <button data-ng-click="newUser(user)">CHAT</button>
+
 
 </div>
