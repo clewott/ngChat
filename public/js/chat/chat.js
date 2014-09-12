@@ -7,21 +7,21 @@ angular
       .when("/", {
         templateUrl: "views/main.html",
       })
-      .when('/blog', {
+      .when('/chat', {
         templateUrl: 'views/blog-list.html',
-        controller: 'httpCtrl'
+        controller: 'chatCtrl'
       })
       .when('/new', {
         templateUrl: 'views/blog-create.html',
-        controller: 'httpCtrl'
+        controller: 'chatCtrl'
       })
       .when('/blog/:id', {
         templateUrl: 'views/blog-detail.html',
-        controller: 'PostCtrl'
+        controller: 'chatCtrl'
       })
       .when('/blog/:id/edit', {
         templateUrl: 'views/blog-editDetail.html',
-        controller: 'PostCtrl'
+        controller: 'chatCtrl'
       })
       .otherwise({
         redirectTo: '/'
