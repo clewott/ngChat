@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('chatApp')
-  .controller('chatCtrl', function ($scope, $location,$routeParams, chatSvc2, chatSvc, userSvc, userSvc2) {
+  .controller('chatCtrl', function ($scope, $location,$routeParams, chatSvc, chatSvc2, userSvc, userSvc2) {
 
     $scope.createPost = function() {
       $location.path('/new');

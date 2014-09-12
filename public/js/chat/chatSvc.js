@@ -1,7 +1,7 @@
 'use strict';
 angular.module('chatApp')
   .factory('chatSvc', function($resource) {
-    return $resource('api/collections/demotiy',
+    return $resource('api/collections/chat',
       {},
       {
         query: { method: 'GET', isArray: true },
@@ -9,7 +9,7 @@ angular.module('chatApp')
       });
   })
   .factory('chatSvc2', function($resource) {
-    return $resource('api/collections/demotiy/:id',
+    return $resource('api/collections/chat/:id',
       {
         id: '@_id'
       },
