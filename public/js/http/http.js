@@ -1,16 +1,11 @@
 'use strict';
 
 angular
-  .module('chatApp', [
-    'ngCookies',
-    'ngResource',
-    'ngSanitize',
-    'ngRoute'
-  ])
-  .config(function ($routeProvider) {
+  .module("chatApp", ["ngRoute", 'ngResource'])
+    .config(function($routeProvider){
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html'
+      .when("/", {
+        templateUrl: "views/main.html",
       })
       .when('/blog', {
         templateUrl: 'views/blog-list.html',
@@ -22,13 +17,14 @@ angular
       })
       .when('/blog/:id', {
         templateUrl: 'views/blog-detail.html',
-        controller: 'httpCtrl2'
+        controller: 'PostCtrl'
       })
       .when('/blog/:id/edit', {
         templateUrl: 'views/blog-editDetail.html',
-        controller: 'httpCtrl2'
+        controller: 'PostCtrl'
       })
       .otherwise({
         redirectTo: '/'
       });
+
   });
