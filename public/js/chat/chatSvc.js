@@ -1,15 +1,15 @@
 'use strict';
 angular.module('chatApp')
-  .factory('httpSvc', function($resource) {
-    return $resource('api/collections/user',
+  .factory('chatSvc', function($resource) {
+    return $resource('api/collections/chat',
       {},
       {
         query: { method: 'GET', isArray: true },
         create: { method: 'POST'}
       });
   })
-  .factory('httpSvc2', function($resource) {
-    return $resource('api/collections/user/:id',
+  .factory('chatSvc2', function($resource) {
+    return $resource('api/collections/chat/:id',
       {
         id: '@_id'
       },
@@ -19,4 +19,4 @@ angular.module('chatApp')
         delete: { method: 'DELETE'}
       }
       )
-  });
+  })
