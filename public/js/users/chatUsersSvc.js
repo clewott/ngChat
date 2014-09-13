@@ -14,7 +14,7 @@ angular.module('chatApp')
   };
 
   var createUser = function (user) {
-    $http.put(urlUsers, user).then(function (response) {
+    $http.post(urlUsers, user).then(function (response) {
       $rootScope.$broadcast("user:created");
       $log.info("user:created");
     });

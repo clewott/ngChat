@@ -12,7 +12,7 @@ angular.module('chatApp')
     };
 
     var addChat = function (chat) {
-      $http.put(urlChats + "/" + chat._id, chat).then(function (response) {
+      return $http.post(urlChat, chat).then(function (response) {
         $rootScope.$broadcast("chat:added");
         $log.info("chat:added");
       });

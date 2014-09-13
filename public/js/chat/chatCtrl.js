@@ -19,6 +19,10 @@ angular.module('chatApp')
     };
 
 // USER FUNCTIONS //
+    userSvc.getUsers().then(function (users) {
+      $scope.users = users.data;
+    });
+
     $scope.newUser = function(user) {
       userSvc.createUser(user);
       $location.path("/chat");
