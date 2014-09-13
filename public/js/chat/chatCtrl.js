@@ -1,50 +1,40 @@
 'use strict';
 
 angular.module('chatApp')
-  .controller('chatCtrl', function ($scope, $location, $routeParams, chatSvc, chatSvc2, userSvc, userSvc2) {
+  .controller('chatCtrl', function ($scope, $log, $location, $routeParams, chatSvc, userSvc) {
 
-    $scope.createPost = function() {
-      $location.path('/new');
-    };
+    chatSvc.getChats().then(function (chats) {
+      $scope.chats = chats.data;
+    });
+
+    $scope.addChat = function (chat) {
+      chatSvc.addChat(chat).success(function () {
+        $location.path("/chat");
+      });
+    }
+
     $scope.newPost = function(post) {
       chatSvc.create(post)
       $location.path('/chat');
     };
-    $scope.posts = chatSvc.query();
 
-//FUNCTIONS FROM POSTSCTRL //
-    $scope.post = chatSvc2.show({ id: $routeParams.id });
-    $scope.delete = function() {
-      chatSvc2.delete({ id: $routeParams.id });
-      $location.path('/chat');
-    };
-    $scope.edit = function() {
-      chatSvc2.edit($scope.post);
-      $location.path('/chat');
-    };
 // USER FUNCTIONS //
     $scope.newUser = function(user) {
-      userSvc.create(user)
-      console.log(user);
-      console.log("TEST");
-      $location.path('/chat');
+      userSvc.createUser(user);
+      $location.path("/chat");
+      $log.info(user);
     };
 
-    $scope.users = userSvc.query();
-
+// //FUNCTIONS FROM POSTSCTRL //
+//     $scope.post = chatSvc2.show({ id: $routeParams.id });
+//     $scope.delete = function() {
+//       chatSvc2.delete({ id: $routeParams.id });
+//       $location.path('/chat');
+//     };
+//     $scope.edit = function() {
+//       chatSvc2.edit($scope.post);
+//       $location.path('/chat');
+//     };
 
 
   });
-  // .controller('PostCtrl', function($scope, $location, $routeParams, chatSvc2) {
-  //
-  //   $scope.post = chatSvc2.show({ id: $routeParams.id });
-  //   $scope.delete = function() {
-  //     chatSvc2.delete({ id: $routeParams.id });
-  //     $location.path('/blog');
-  //   };
-  //   $scope.edit = function() {
-  //     chatSvc2.edit($scope.post);
-  //     $location.path('/blog');
-  //   };
-  //
-  // });
