@@ -7,7 +7,7 @@ angular.module('chatApp')
     $scope.user = chatSvc.userName;
     console.log($scope.user);
 
-    $scope.getUsers = chatSvc.getUsers();
+    // $scope.getUsers = chatSvc.getUsers();
 
     $scope.getChats = $interval(function()
     {
@@ -16,6 +16,12 @@ angular.module('chatApp')
       });
     }, 500);
 
+    $scope.getOnlineUsers = $interval(function()
+    {
+      chatSvc.getOnlineUsers().success(function(users){
+      $scope.users = users;
+      });
+    }, 500);
 
     $scope.addUser = function(userName){
       chatSvc.addUser(userName);
@@ -39,7 +45,21 @@ angular.module('chatApp')
       $scope.submitChat ={};
     };
 
-    $scope.sortComment = function(chat) {
+    $scope.addOnlineUser = function(user) {
+      var user =
+      {
+        name: $scope.user,
+        online: true,
+        icon: user.icon,
+      };
+      chatSvc.addOnlineUser(user);
+    };
+
+    $scope.removeOnlineUser = function(id){
+      chatSvc.removeOnlineUser(id);
+    };
+// SORT CHAT FUNC
+    $scope.sortChat = function(chat) {
       var date = new Date(chat.date);
       return date;
     };
