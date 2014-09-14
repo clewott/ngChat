@@ -1,16 +1,28 @@
-<h2>Hey, {{user}}, welcome to ACChat!</h2>
-<aside class="online" data-ng-repeat="onlineUsers in getUsers">
-	<p>{{onlineUsers}}</p>
-</aside>
-<section data-ng-repeat="chat in chats track by $index" class="chatRoom">
-	<span class="username">{{chat.name}}</span>
-	<span> at </span>
-	<span class="chatDate">{{chat.date | date:'h:mma'}}</span>
-	<p class="chatContent">{{chat.content}}</p>
+<header>
+	<h2>Hey, {{user}}, welcome to ACChat!</h2>
+</header>
+
+<a class="off" href="" ng-click="logout(user)">LOGOUT</a>
+
+<section>
+	<div class="online" data-ng-repeat="onlineUsers in getUsers">
+		<p>{{onlineUsers}}</p>
+	</div>
 </section>
 
-<form action="" data-ng-submit="addChat(submitChat)">
-	<input id="chatBox" data-ng-model="submitChat.content"></input>
-</form>
+<aside>
+	<div class="asideWrapper">
+		<div data-ng-repeat="chat in chats track by $index" class="chatRoom">
+			<ul>
+				<li class="username"><b>{{chat.name}}</b> at {{chat.date | date:'h:mma'}}</li>
+				<li class="chatContent">{{chat.content}}</li>
+			</ul>
+		</div>
+	</div>
+</aside>
 
-<a href="" ng-click="logout(user)">LOGOUT</a>
+<footer>
+	<form class="submitForm" data-ng-submit="addChat(submitChat)">
+		<input id="chatBox" data-ng-model="submitChat.content" placeholder="Be social..."></input>
+	</form>
+</footer>
