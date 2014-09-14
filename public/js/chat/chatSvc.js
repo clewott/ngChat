@@ -21,7 +21,6 @@ angular.module('chatApp')
       $http.post(urlChat, chat).success(function (response) {
         $rootScope.$broadcast("chat:added");
         $log.info("chat:added");
-        $route.reload();
       });
     };
 

@@ -1,19 +1,26 @@
 'use strict';
 
 angular.module('chatApp')
-  .controller('chatCtrl', function ($scope, $location, $rootScope, $routeParams, $timeout, $cookies, $cookieStore, chatSvc, userSvc) {
+  .controller('chatCtrl', function ($scope, $location, $rootScope, $routeParams, $interval, $cookies, $cookieStore, chatSvc) {
+
+
     $scope.user = chatSvc.userName;
     console.log($scope.user);
 
-    chatSvc.getChats().success(function(chats){
+    $scope.getChats = $interval(function()
+    {
+      chatSvc.getChats().success(function(chats){
       $scope.chats = chats;
-    });
+      });
+    }, 500);
 
 
     $scope.addUser = function(userName){
       chatSvc.addUser(userName);
       $location.path("/chat");
     };
+
+
 
     $scope.addChat = function(chat) {
       var chat =
@@ -26,9 +33,4 @@ angular.module('chatApp')
       $scope.submitChat ={};
     };
 
-    // $rootScope.$on("chat:added", function(){
-    //   chatSvc.getChat().success(function(chat){
-    //     $scope.singleChat = chat;
-    //   });
-    // });
 });
