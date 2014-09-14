@@ -1,6 +1,6 @@
 'use strict';
 angular.module('chatApp')
-  .factory('chatSvc', function($resource) {
+  .factory('chatSvc', function($resource, $rootScope, $log) {
     return $resource('api/collections/chat',
       {},
       {

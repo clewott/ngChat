@@ -1,16 +1,24 @@
 'use strict';
 
 angular.module('chatApp')
-  .controller('chatCtrl', function ($scope, $location, $routeParams, chatSvc, chatSvc2, userSvc, userSvc2) {
+  .controller('chatCtrl', function ($scope, $location, $routeParams, $timeout, chatSvc, chatSvc2, userSvc, userSvc2) {
 
-    $scope.createPost = function() {
-      $location.path('/new');
-    };
+    // $scope.createPost = function() {
+    //   $location.path('/new');
+    // };
     $scope.newPost = function(post) {
       chatSvc.create(post)
-      $location.path('/chat');
     };
+
+    // $scope.run = $timeout(function() {
+    //     chatSvc.query()
+    //     console.log('update with timeout fired')
+    //   }, 1000);
+    //
     $scope.posts = chatSvc.query();
+    //
+
+
 
 //FUNCTIONS FROM POSTSCTRL //
     $scope.post = chatSvc2.show({ id: $routeParams.id });
