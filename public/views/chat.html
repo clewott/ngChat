@@ -12,7 +12,7 @@
 
 <aside>
 	<div class="asideWrapper">
-		<div data-ng-repeat="chat in chats | orderBy : sortComment : false" class="chatRoom">
+		<div data-ng-repeat="chat in chats | orderBy : sortChat : false" class="chatRoom">
 			<ul>
 				<li class="username"><b>{{chat.name}}</b> at {{chat.date | date:'h:mma'}}</li>
 				<li class="chatContent">{{chat.content}}</li>

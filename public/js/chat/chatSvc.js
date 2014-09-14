@@ -40,7 +40,7 @@ angular.module('chatApp')
     };
 
 
-    var addOnlineUser = function (user) {
+    var addOnlineUser = function(user) {
       $http.post(urlUsers, user).success(function (response) {
         $rootScope.$broadcast("user:online");
         $log.info("user:online");
