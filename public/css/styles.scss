@@ -1,5 +1,5 @@
 html {
-  background-image: Url("http://subtlepatterns.com/patterns/squared_metal.png");
+  background-image: Url("http://subtlepatterns.com/patterns/congruent_pentagon.png");
 }
 
 body {
@@ -17,7 +17,7 @@ body {
 .container {
   margin: 0px;
   width: 100%;
-  background-image: Url("http://subtlepatterns.com/patterns/squared_metal.png");
+  background-image: Url("http://subtlepatterns.com/patterns/congruent_pentagon.png");
 }
 
 .off {
@@ -32,10 +32,13 @@ header {
 
 section {
   width: 200px;
-  height: 523px;
-  border: 1px solid black;
+  height: 500px;
   display: inline-block;
-  background-color: white;
+  background-color: rgba(204,204,204, 0.6);
+  padding-left: 5px;
+  h3 {
+    margin-top: 0px;
+  }
   .online {
     float:left;
   }
@@ -47,7 +50,7 @@ aside {
   height: 500px;
   overflow-y: scroll;
   vertical-align: top;
-  background-color: white;
+  background-color: rgba(204,204,204, 0.6);
   .chatRoom {
     width: 100%;
     word-wrap: break-word;
@@ -65,11 +68,10 @@ aside {
 
 footer {
   .submitForm {
-    float: left;
-    width: 700px;
+    width: 905px;
     margin-right: 0px;
     input {
-      width: 700px;
+      width: 100%;
     }
   }
 }
