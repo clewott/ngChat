@@ -4,7 +4,7 @@ angular.module('chatApp')
   .controller('chatCtrl', function ($scope, $location, $rootScope, $routeParams, $route, $interval, $cookies, $cookieStore, chatSvc) {
 
 
-    $scope.user = chatSvc.userName;
+    $rootScope.user = chatSvc.userName;
     console.log($scope.user);
 
     // $scope.getUsers = chatSvc.getUsers();
@@ -12,6 +12,7 @@ angular.module('chatApp')
     $scope.getChats = $interval(function()
     {
       chatSvc.getChats().success(function(chats){
+      $scope.thisUser = $rootScope.user;
       $scope.chats = chats;
       });
     }, 500);
@@ -57,6 +58,7 @@ angular.module('chatApp')
 
     $scope.removeOnlineUser = function(id){
       chatSvc.removeOnlineUser(id);
+      $location.path("/");
     };
 // SORT CHAT FUNC
     $scope.sortChat = function(chat) {

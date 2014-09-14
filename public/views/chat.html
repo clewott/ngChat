@@ -5,8 +5,10 @@
 <a class="off" href="" ng-click="logout(user)">LOGOUT</a>
 
 <section>
-	<div class="online" data-ng-repeat="user in users">
-		<p>{{user.name}}</p>
+	<div class="online">
+		<ul data-ng-repeat="user in users">
+			<li>{{user.name}}</li><span><a href="" ng-if="thisUser == user.name" ng-click="removeOnlineUser(user)">LOGOUT</a></span>
+		</ul>
 	</div>
 </section>
 

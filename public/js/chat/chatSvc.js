@@ -47,7 +47,7 @@ angular.module('chatApp')
       });
     };
 
-    var deleteOnlineUser = function(user){
+    var removeOnlineUser = function(user){
       $http.delete(urlUsers + "/" + user._id, user).then(function(response){
         $rootScope.$broadcast("user:offline");
         $log.info("user:offline")
@@ -62,6 +62,7 @@ angular.module('chatApp')
       addUser: addUser,
       getOnlineUsers: getOnlineUsers,
       addOnlineUser: addOnlineUser,
+      removeOnlineUser: removeOnlineUser,
       // removeName: removeName,
       userName: userName,
     }
