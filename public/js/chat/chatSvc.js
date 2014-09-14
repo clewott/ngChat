@@ -39,6 +39,7 @@ angular.module('chatApp')
       return $http.get(urlUsers);
     };
 
+
     var addOnlineUser = function (user) {
       $http.post(urlUsers, user).success(function (response) {
         $rootScope.$broadcast("user:online");
@@ -52,6 +53,7 @@ angular.module('chatApp')
         $log.info("user:offline")
       });
     };
+
 
     return {
       getChats: getChats,

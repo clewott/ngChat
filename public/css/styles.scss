@@ -1,8 +1,75 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html {
+  background-image: Url("http://subtlepatterns.com/patterns/squared_metal.png");
 }
 
-a {
-  color: #00B7FF;
+body {
+  padding: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  width: 100%;
+}
+
+.jumbotron {
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  margin: 0px;
+  width: 100%;
+  background-image: Url("http://subtlepatterns.com/patterns/squared_metal.png");
+}
+
+.off {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+header {
+  text-align: center;
+}
+
+section {
+  width: 200px;
+  height: 523px;
+  border: 1px solid black;
+  display: inline-block;
+  background-color: white;
+  .online {
+    float:left;
+  }
+}
+
+aside {
+  display: inline-block;
+  width: 700px;
+  height: 500px;
+  overflow-y: scroll;
+  vertical-align: top;
+  background-color: white;
+  .chatRoom {
+    width: 100%;
+    word-wrap: break-word;
+    ul {
+      padding: 0px;
+      li {
+        list-style-type: none;
+      }
+      .chatContent {
+        font-size: .9em;
+      }
+    }
+  }
+}
+
+footer {
+  .submitForm {
+    float: left;
+    width: 700px;
+    margin-right: 0px;
+    input {
+      width: 700px;
+    }
+  }
 }
