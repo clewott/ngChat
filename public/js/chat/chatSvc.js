@@ -2,22 +2,20 @@
 angular.module('chatApp')
 
   .factory('chatSvc', function ($route, $rootScope, $log, $http, $cookies, $cookieStore) {
-    var usersOnline = [];
 
     var addUser = function(userName){
       $cookieStore.put("name", userName);
       $rootScope.$broadcast("user:added");
       console.log("user:added");
-      usersOnline.push(userName);
     };
 
     var userName = $cookieStore.get("name");
 
     // var removeName = $cookieStore.remove("name");
 
-    var getUsers = function(){
-      return usersOnline;
-    }
+    // var getUsers = function(){
+    //   return usersOnline;
+    // }
 
 ///////////////////////////////////////////////////////
     var urlChat = "/api/collections/chat";
@@ -34,14 +32,34 @@ angular.module('chatApp')
         $log.info("chat:added");
       });
     };
+///////////////////////////////////////////////////////
+    var urlUsers = "/api/collections/users";
 
+    var getOnlineUsers = function () {
+      return $http.get(urlUsers);
+    };
 
+    var addOnlineUser = function (user) {
+      $http.post(urlUsers, user).success(function (response) {
+        $rootScope.$broadcast("user:online");
+        $log.info("user:online");
+      });
+    };
+
+    var deleteOnlineUser = function(user){
+      $http.delete(urlUsers + "/" + user._id, user).then(function(response){
+        $rootScope.$broadcast("user:offline");
+        $log.info("user:offline")
+      });
+    };
 
     return {
       getChats: getChats,
-      getUsers: getUsers,
+      // getUsers: getUsers,
       addChat: addChat,
       addUser: addUser,
+      getOnlineUsers: getOnlineUsers,
+      addOnlineUser: addOnlineUser,
       // removeName: removeName,
       userName: userName,
     }

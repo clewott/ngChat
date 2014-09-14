@@ -1,8 +1,8 @@
 <h2>Hey, {{user}}, welcome to ACChat!</h2>
-<aside class="online" data-ng-repeat="onlineUsers in getUsers">
-	<p>{{onlineUsers}}</p>
+<aside class="online" data-ng-repeat="user in users">
+	<h3>{{user.name}}</h3>
 </aside>
-<section data-ng-repeat="chat in chats | orderBy : sortComment : false" class="chatRoom">
+<section data-ng-repeat="chat in chats | orderBy : sortChat : false" class="chatRoom">
 	<span class="username">{{chat.name}}</span>
 	<span> at </span>
 	<span class="chatDate">{{chat.date | date:'h:mma'}}</span>

@@ -1,7 +1,7 @@
 <div class="jumbotron">
   <h1>Welcome to ACChat!</h1>
 
-  <form action="" data-ng-submit="addUser(user)">
+  <form action="" data-ng-submit="addUser(user); addOnlineUser(user)">
     <label for="">ENTER USERNAME: </label>
     <input type="text" data-ng-model="user">
     <button type="submit">CHAT</button>
