@@ -1,58 +1,36 @@
 'use strict';
 
 angular.module('chatApp')
-  .controller('chatCtrl', function ($scope, $location, $routeParams, $timeout, chatSvc, chatSvc2, userSvc, userSvc2) {
+  .controller('chatCtrl', function ($scope, $location, $rootScope, $routeParams, $timeout, $cookies, $cookieStore, chatSvc, userSvc) {
 
-    // $scope.createPost = function() {
-    //   $location.path('/new');
-    // };
-    $scope.newPost = function(post) {
-      chatSvc.create(post)
+
+    $scope.user = chatSvc.userName;
+    console.log($scope.user);
+
+    chatSvc.getChats().success(function(chats){
+      $scope.chats = chats;
+    });
+
+
+    $scope.addUser = function(userName){
+      chatSvc.addUser(userName);
+      $location.path("/chat");
     };
 
-    // $scope.run = $timeout(function() {
-    //     chatSvc.query()
-    //     console.log('update with timeout fired')
-    //   }, 1000);
-    //
-    $scope.posts = chatSvc.query();
-    //
-
-
-
-//FUNCTIONS FROM POSTSCTRL //
-    $scope.post = chatSvc2.show({ id: $routeParams.id });
-    $scope.delete = function() {
-      chatSvc2.delete({ id: $routeParams.id });
-      $location.path('/chat');
-    };
-    $scope.edit = function() {
-      chatSvc2.edit($scope.post);
-      $location.path('/chat');
-    };
-// USER FUNCTIONS //
-    $scope.newUser = function(user) {
-      userSvc.create(user)
-      console.log(user);
-      console.log("TEST");
-      $location.path('/chat');
+    $scope.addChat = function(chat) {
+      var chat =
+      {
+        name: $scope.user,
+        content: chat.content,
+        date: new Date()
+      };
+      chatSvc.addChat(chat);
+      $scope.submitChat ={};
     };
 
-    $scope.users = userSvc.query();
-
-
-
-  });
-  // .controller('PostCtrl', function($scope, $location, $routeParams, chatSvc2) {
-  //
-  //   $scope.post = chatSvc2.show({ id: $routeParams.id });
-  //   $scope.delete = function() {
-  //     chatSvc2.delete({ id: $routeParams.id });
-  //     $location.path('/blog');
-  //   };
-  //   $scope.edit = function() {
-  //     chatSvc2.edit($scope.post);
-  //     $location.path('/blog');
-  //   };
-  //
-  // });
+    // $rootScope.$on("chat:added", function(){
+    //   chatSvc.getChat().success(function(chat){
+    //     $scope.singleChat = chat;
+    //   });
+    // });
+});

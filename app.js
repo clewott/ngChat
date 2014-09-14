@@ -4,7 +4,7 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
-  , db = mongoskin.db(("mongodb://ansleychris:acchat@ds035290.mongolab.com:35290/acchat"), {safe:true});
+  , db = mongoskin.db(("mongodb://ansleychris:acchat@ds035290.mongolab.com:35290/acchat" || 'localhost:27017/test'), {safe:true});
 
 // get an instance of express
 var app = express();
