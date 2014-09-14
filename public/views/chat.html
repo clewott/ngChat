@@ -6,6 +6,7 @@
 <a class="off" href="" ng-click="logout(user)">LOGOUT</a>
 
 <section>
+	<h3>Online Users:</h3>
 	<div class="online" data-ng-repeat="onlineUsers in getUsers">
 		<p>{{onlineUsers}}</p>
 	</div>
@@ -24,6 +25,6 @@
 
 <footer>
 	<form class="submitForm" data-ng-submit="addChat(submitChat)">
-		<input id="chatBox" data-ng-model="submitChat.content" placeholder="Be social..."></input>
+		<input id="chatBox" data-ng-model="submitChat.content" placeholder="Be social..." required></input>
 	</form>
 </footer>
