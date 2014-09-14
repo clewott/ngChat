@@ -1,44 +1,34 @@
 'use strict';
 
 angular.module('chatApp')
-  .controller('chatCtrl', function ($scope, $log, $location, $routeParams, chatSvc, userSvc) {
+  .controller('chatCtrl', function ($scope, $location, $rootScope, $routeParams, $timeout, $cookies, $cookieStore, chatSvc, userSvc) {
+    $scope.user = chatSvc.userName;
+    console.log($scope.user);
 
-    chatSvc.getChats().then(function (chats) {
-      $scope.chats = chats.data;
+    chatSvc.getChats().success(function(chats){
+      $scope.chats = chats;
     });
 
-    $scope.addChat = function (chat) {
-      chatSvc.addChat(chat).success(function () {
-        $location.path("/chat");
-      });
-    }
 
-    $scope.addChatter = function(chat) {
-      chatUsersSvc.getUser($routeParams.id).success(function(user) {
-        $scope.singleUser = user;
-        $log.info($scope.singleUser);
-        $scope.singleUser.chats.push({
-          author:chat.author,
-          content:chat.content,
-          chatTime:new Date()
-        });
-        chatUsersSvc.addChatter(chat);
-      });
-      $scope.chat = {};
-    };
-
-
-// USER FUNCTIONS //
-    userSvc.getUsers().then(function (users) {
-      $scope.users = users.data;
-    });
-
-    $scope.newUser = function(user) {
-      userSvc.createUser({
-        name:user.name,
-        chats: []
-      })
+    $scope.addUser = function(userName){
+      chatSvc.addUser(userName);
       $location.path("/chat");
-      $log.info(user);
     };
-  });
+
+    $scope.addChat = function(chat) {
+      var chat =
+      {
+        name: $scope.user,
+        content: chat.content,
+        date: new Date()
+      };
+      chatSvc.addChat(chat);
+      $scope.submitChat ={};
+    };
+
+    // $rootScope.$on("chat:added", function(){
+    //   chatSvc.getChat().success(function(chat){
+    //     $scope.singleChat = chat;
+    //   });
+    // });
+});

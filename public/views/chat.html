@@ -1,0 +1,12 @@
+<h2>Hey, {{user}}!</h2>
+
+<section data-ng-repeat="chat in chats track by $index" class="chatRoom">
+	<p class="username">{{chat.name}}</p>
+	<p class="chatDate">{{chat.date}}</p>
+	<p class="chatContent">{{chat.content}}</p>
+</section>
+
+<form action="" data-ng-submit="addChat(submitChat)">
+	<textarea name="" id="" cols="30" rows="10" data-ng-model="submitChat.content"></textarea>
+	<button type="submit">Enter</button>
+</form>
