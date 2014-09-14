@@ -39,5 +39,8 @@ angular.module('chatApp')
       $scope.submitChat ={};
     };
 
-
+    $scope.sortComment = function(chat) {
+      var date = new Date(chat.date);
+      return date;
+    };
 });
