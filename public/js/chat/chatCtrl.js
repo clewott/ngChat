@@ -13,10 +13,20 @@ angular.module('chatApp')
       });
     }
 
-    $scope.newPost = function(post) {
-      chatSvc.create(post)
-      $location.path('/chat');
+    $scope.addChatter = function(chat) {
+      chatUsersSvc.getUser($routeParams.id).success(function(user) {
+        $scope.singleUser = user;
+        $log.info($scope.singleUser);
+        $scope.singleUser.chats.push({
+          author:chat.author,
+          content:chat.content,
+          chatTime:new Date()
+        });
+        chatUsersSvc.addChatter(chat);
+      });
+      $scope.chat = {};
     };
+
 
 // USER FUNCTIONS //
     userSvc.getUsers().then(function (users) {
@@ -24,21 +34,11 @@ angular.module('chatApp')
     });
 
     $scope.newUser = function(user) {
-      userSvc.createUser(user);
+      userSvc.createUser({
+        name:user.name,
+        chats: []
+      })
       $location.path("/chat");
       $log.info(user);
     };
-
-// //FUNCTIONS FROM POSTSCTRL //
-//     $scope.post = chatSvc2.show({ id: $routeParams.id });
-//     $scope.delete = function() {
-//       chatSvc2.delete({ id: $routeParams.id });
-//       $location.path('/chat');
-//     };
-//     $scope.edit = function() {
-//       chatSvc2.edit($scope.post);
-//       $location.path('/chat');
-//     };
-
-
   });

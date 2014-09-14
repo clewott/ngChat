@@ -20,32 +20,20 @@ angular.module('chatApp')
     });
   };
 
+  var addChatter = function(user) {
+    $http.put(urlUsers + "/" + user._id, user).success(function(data) {
+    $rootScope.$broadcast("chat:added");
+    $log.info("chat:added");
+    });
+  };
+
+
+
   return {
     getUsers: getUsers,
     getUser: getUser,
-    createUser: createUser
+    createUser: createUser,
+    addChatter: addChatter
   }
 
 });
-
-
-
-//   return $resource('api/collections/chatUsers',
-//     {},
-//     {
-//       query: { method: 'GET', isArray: true},
-//       create: { method: 'POST'}
-//     }
-//     )
-// })
-// .factory('userSvc2', function($resource) {
-//   return $resource('api/collections/chatUsers/:id',
-//     {
-//       id: '@_id'
-//     },
-//     {
-//       show: { method: 'GET', isArray: true},
-//       delete: { method: 'DELETE'},
-//     }
-//     )
-// });
