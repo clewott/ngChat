@@ -2,7 +2,7 @@
 <aside class="online" data-ng-repeat="onlineUsers in getUsers">
 	<p>{{onlineUsers}}</p>
 </aside>
-<section data-ng-repeat="chat in chats track by $index" class="chatRoom">
+<section data-ng-repeat="chat in chats | orderBy : sortComment : false" class="chatRoom">
 	<span class="username">{{chat.name}}</span>
 	<span> at </span>
 	<span class="chatDate">{{chat.date | date:'h:mma'}}</span>
