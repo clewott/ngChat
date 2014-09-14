@@ -1,12 +1,16 @@
-<h2>Hey, {{user}}!</h2>
-
+<h2>Hey, {{user}}, welcome to ACChat!</h2>
+<aside class="online" data-ng-repeat="onlineUsers in getUsers">
+	<p>{{onlineUsers}}</p>
+</aside>
 <section data-ng-repeat="chat in chats track by $index" class="chatRoom">
-	<p class="username">{{chat.name}}</p>
-	<p class="chatDate">{{chat.date}}</p>
+	<span class="username">{{chat.name}}</span>
+	<span> at </span>
+	<span class="chatDate">{{chat.date | date:'h:mma'}}</span>
 	<p class="chatContent">{{chat.content}}</p>
 </section>
 
 <form action="" data-ng-submit="addChat(submitChat)">
-	<textarea name="" id="" cols="30" rows="10" data-ng-model="submitChat.content"></textarea>
-	<button type="submit">Enter</button>
+	<input id="chatBox" data-ng-model="submitChat.content"></input>
 </form>
+
+<a href="" ng-click="logout(user)">LOGOUT</a>

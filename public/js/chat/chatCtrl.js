@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('chatApp')
-  .controller('chatCtrl', function ($scope, $location, $rootScope, $routeParams, $interval, $cookies, $cookieStore, chatSvc) {
+  .controller('chatCtrl', function ($scope, $location, $rootScope, $routeParams, $route, $interval, $cookies, $cookieStore, chatSvc) {
 
 
     $scope.user = chatSvc.userName;
     console.log($scope.user);
+
+    $scope.getUsers = chatSvc.getUsers();
 
     $scope.getChats = $interval(function()
     {
@@ -20,17 +22,22 @@ angular.module('chatApp')
       $location.path("/chat");
     };
 
-
+    // $scope.logout = function(userName){
+    //   chatSvc.removeUser;
+    //   $location.path("/");
+    // }
 
     $scope.addChat = function(chat) {
       var chat =
       {
         name: $scope.user,
         content: chat.content,
-        date: new Date()
+        date: new Date(),
+        icon: chat.icon,
       };
       chatSvc.addChat(chat);
       $scope.submitChat ={};
     };
+
 
 });
