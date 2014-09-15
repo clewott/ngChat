@@ -48,7 +48,6 @@ angular.module('chatApp')
         icon: user.icon,
       };
       chatSvc.addOnlineUser(user);
-    };
 
     $scope.removeOnlineUser = function(id){
       chatSvc.removeOnlineUser(id);
