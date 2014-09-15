@@ -54,16 +54,21 @@ angular.module('chatApp')
       });
     };
 
+    var editOnlineUser = function(user){
+      $http.put(urlUsers + "/" + user._id, user).then(function(response){
+        $rootScope.$broadcast("user:edited");
+        $log.info("user:edited");
+      });
+    };
 
     return {
       getChats: getChats,
-      // getUsers: getUsers,
       addChat: addChat,
       addUser: addUser,
       getOnlineUsers: getOnlineUsers,
       addOnlineUser: addOnlineUser,
       removeOnlineUser: removeOnlineUser,
-      // removeName: removeName,
+      editOnlineUser: editOnlineUser,
       userName: userName,
     }
 

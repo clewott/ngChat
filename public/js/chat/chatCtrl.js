@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('chatApp')
-  .controller('chatCtrl', function ($scope, $location, $rootScope, $routeParams, $route, $interval, $cookies, $cookieStore, chatSvc) {
+  .controller('chatCtrl', function ($scope, $location, $rootScope, $routeParams, $route, $interval, $timeout,$cookies, $cookieStore, chatSvc) {
 
 
-    $rootScope.user = chatSvc.userName;
+    $scope.user = chatSvc.userName;
     console.log($scope.user);
 
     $scope.getChats = $interval(function()
     {
       chatSvc.getChats().success(function(chats){
-      // $scope.thisUser = $rootScope.user;
+      $scope.thisUser = $scope.user;
       $scope.chats = chats;
       });
     }, 500);
@@ -18,7 +18,7 @@ angular.module('chatApp')
     $scope.getOnlineUsers = $interval(function()
     {
       chatSvc.getOnlineUsers().success(function(users){
-      $scope.thisUser = $rootScope.user;
+      $scope.thisUser = $scope.user;
       $scope.users = users;
       });
     }, 500);
@@ -54,6 +54,15 @@ angular.module('chatApp')
       chatSvc.removeOnlineUser(id);
       $location.path("/");
     };
+
+    // var userRun = new Date();
+    // $scope.userIdle = $rootScope.$watch(function detectIdle() {
+    //   var now = new Date();
+    //   if (now - userRun > 10*60*60) {
+    //      chatSvc.editOnlineUser(user)
+    //   }
+    //   userRun = now;
+    // });
 // SORT CHAT FUNC
     $scope.sortChat = function(chat) {
       var date = new Date(chat.date);
