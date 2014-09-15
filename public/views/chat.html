@@ -7,13 +7,13 @@
 	<h3>Online Users:</h3>
 	<div class="online">
 		<ul data-ng-repeat="user in users">
-			<li>{{user.name}}</li><span><a href="" ng-if="thisUser == user.name" ng-click="removeOnlineUser(user)">LOGOUT</a></span>
+			<span><li>{{user.name}}</li></span><span><a href="" ng-if="thisUser == user.name" ng-click="removeOnlineUser(user)">LOGOUT</a></span>
 		</ul>
 </section>
 
 <aside>
 	<div class="asideWrapper">
-		<div data-ng-repeat="chat in chats | orderBy : sortChat : false" class="chatRoom">
+		<div data-ng-repeat="chat in chats |  limitTo : 30 | orderBy : sortChat : false" class="chatRoom">
 			<ul>
 				<li class="username"><b>{{chat.name}}</b> at {{chat.date | date:'h:mma'}}</li>
 				<li class="chatContent">{{chat.content}}</li>
