@@ -4,5 +4,5 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Acchat', ngApp: 'chatApp' });
+  res.render('index', { title: 'ACChat', ngApp: 'chatApp' });
 };
